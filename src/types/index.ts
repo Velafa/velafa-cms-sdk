@@ -104,6 +104,8 @@ export interface ResolveResult {
   page: Page;
   template: Template;
   entry?: Entry;
+  /** Present on collection listing resolves (path without `:slug`). */
+  entries?: Entry[];
   seo?: SeoFields;
 }
 

@@ -38,6 +38,8 @@ Atlas only accepts locale as a **query parameter** on public APIs. Your site cho
 
 Set `VELAFA_DEFAULT_LOCALE` and ignore locale in the URL.
 
+When a site has **only one** locale, Atlas publish writes `sitemap.xml` / `llms.txt` **without** a locale path prefix (e.g. `https://example.com/about`, not `/en-mt/about`). With two or more locales, published artifact URLs are prefixed (`/en-mt/about`, `/nl-nl/about`, …).
+
 ### Query or cookie
 
 ```tsx

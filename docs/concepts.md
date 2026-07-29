@@ -53,6 +53,7 @@ type ResolveResult = {
   page: Page;         // path, type, sections, templateId, …
   template: Template; // layoutPreset, routePattern, kind, …
   entry?: Entry;      // present for collection detail routes
+  entries?: Entry[];  // present for collection listing routes
   seo?: SeoFields;    // usually from the entry when present
 };
 ```
@@ -61,7 +62,7 @@ Drive your UI from:
 
 - `template.layoutPreset` — which layout/component set to render
 - `page.type` — `static` | `collection` | `dynamic`
-- `page.sections` / `entry.fields` / `entry.body` / `entry.sections` — content payload (`ContentSection` is open `{ type, data }`; `SECTION_TYPE` presets are optional conventions)
+- `page.sections` / `entry.fields` / `entry.body` / `entry.sections` / `entries` — content payload (`ContentSection` is open `{ type, data }`; `SECTION_TYPE` presets are optional conventions)
 
 ## Live items
 

@@ -75,6 +75,8 @@ export const API_PATH_SEGMENT = {
   SITES: "sites",
   ENVS: "envs",
   RESOLVE: "resolve",
+  COLLECTIONS: "collections",
+  ENTRIES: "entries",
   LIVE: "live",
   SITEMAP_XML: "sitemap.xml",
   LLMS_TXT: "llms.txt",

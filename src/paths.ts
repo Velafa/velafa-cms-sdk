@@ -95,3 +95,27 @@ export function buildLlmsTxtUrl(
     `${trimTrailingSlash(baseUrl)}/`,
   ).toString();
 }
+
+export function buildCollectionEntriesUrl(
+  baseUrl: string,
+  siteId: string,
+  envId: string,
+  collectionId: string,
+  locale?: string,
+): string {
+  const url = new URL(
+    buildPublicSitePath(
+      siteId,
+      API_PATH_SEGMENT.ENVS,
+      encodeSegment(envId),
+      API_PATH_SEGMENT.COLLECTIONS,
+      encodeSegment(collectionId),
+      API_PATH_SEGMENT.ENTRIES,
+    ),
+    `${trimTrailingSlash(baseUrl)}/`,
+  );
+  if (locale) {
+    url.searchParams.set(API_QUERY_PARAM.LOCALE, locale);
+  }
+  return url.toString();
+}

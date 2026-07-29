@@ -7,6 +7,7 @@ import {
 import { parseEnvelope, unwrapEnvelope } from "./envelope.js";
 import { CmsApiError, throwClientError } from "./errors.js";
 import {
+  buildCollectionEntriesUrl,
   buildLiveItemUrl,
   buildLlmsTxtUrl,
   buildResolveUrl,
@@ -15,6 +16,7 @@ import {
 import type {
   CmsClientConfig,
   CmsRequestOptions,
+  Entry,
   LiveItem,
   LocaleOptions,
   ResolveResult,
@@ -28,6 +30,10 @@ export interface CmsClient {
    * @param path CMS path including leading slash (e.g. `/blog/hello-world`).
    */
   resolve(path: string, options?: LocaleOptions): Promise<ResolveResult>;
+  listEntries(
+    collectionId: string,
+    options?: LocaleOptions,
+  ): Promise<Entry[]>;
   getLiveItem(key: string, options?: LocaleOptions): Promise<LiveItem>;
   /** Published sitemap.xml artifact (raw XML). */
   getSitemap(options?: CmsRequestOptions): Promise<string>;
@@ -63,6 +69,18 @@ export function createCmsClient(config: CmsClientConfig): CmsClient {
         locale,
       );
       return requestJson<ResolveResult>(fetcher, url, options);
+    },
+
+    async listEntries(collectionId, options = {}) {
+      const locale = resolveLocale(options.locale, config.defaultLocale);
+      const url = buildCollectionEntriesUrl(
+        baseUrl,
+        config.siteId,
+        config.envId,
+        collectionId,
+        locale,
+      );
+      return requestJson<Entry[]>(fetcher, url, options);
     },
 
     async getLiveItem(key, options = {}) {

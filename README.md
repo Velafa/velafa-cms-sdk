@@ -6,17 +6,31 @@ Use this package from a Next.js (or any Node 18+) website to resolve published p
 
 This SDK does **not** cover the admin CMS (auth, CRUD, publish UI). Those APIs stay behind JWT + `tenantId` and are used by Velafa CMS itself.
 
-## Install (private)
+**Repository:** [github.com/velafa/velafa-cms-sdk](https://github.com/velafa/velafa-cms-sdk) (public)
 
-The package is `"private": true`. Install from git or a local path until you publish to GitHub Packages / npm.
+## Install
+
+Install from the public GitHub repository (not published to the npm registry yet):
 
 ```bash
-# Git (replace with your remote)
-npm install git+https://github.com/YOUR_ORG/velafa-cms-sdk.git
+npm install git+https://github.com/velafa/velafa-cms-sdk.git
+```
 
-# Local workspace sibling
+Pin a commit when you want reproducible installs (recommended for production / Vercel):
+
+```bash
+npm install git+https://github.com/velafa/velafa-cms-sdk.git#21e999d9d5f7f54e09ff37d77a025744403798d4
+```
+
+Local workspace sibling (development only):
+
+```bash
 npm install file:../velafa-cms-sdk
 ```
+
+Use **HTTPS** (`git+https://…`), not SSH, so CI and Vercel can install without deploy keys.
+
+A `prepare` script runs `npm run build` on install so `dist/` is produced automatically.
 
 Peer dependency (optional): `next@^16` when using `@velafa-cms/sdk/next`.
 
@@ -93,4 +107,4 @@ export default async function Page(props: Props) {
 
 ## License
 
-UNLICENSED — private package.
+UNLICENSED — source is public on GitHub; not an open-source license grant. Not published to the npm registry.

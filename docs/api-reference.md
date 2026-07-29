@@ -35,6 +35,7 @@ True for resolve / live / artifact not-found codes or HTTP 404.
 | Method | Returns |
 |--------|---------|
 | `resolve(path, options?: LocaleOptions)` | `Promise<ResolveResult>` |
+| `listEntries(collectionId, options?: LocaleOptions)` | `Promise<Entry[]>` |
 | `getLiveItem(key, options?: LocaleOptions)` | `Promise<LiveItem>` |
 | `getSitemap(options?: CmsRequestOptions)` | `Promise<string>` |
 | `getLlmsTxt(options?: CmsRequestOptions)` | `Promise<string>` |
@@ -75,6 +76,7 @@ type LocaleOptions = CmsRequestOptions & {
 | `page` | `Page` | Always present |
 | `template` | `Template` | Always present |
 | `entry` | `Entry \| undefined` | Collection detail routes |
+| `entries` | `Entry[] \| undefined` | Collection listing routes |
 | `seo` | `SeoFields \| undefined` | Often from entry |
 
 #### `Page`

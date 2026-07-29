@@ -78,7 +78,10 @@ const article = await cms.resolve("/blog/hello-world", {
 | `path` | Must include leading slash (`/about`). Required by Atlas. |
 | `options.locale` | Optional; falls back to `defaultLocale`, then Atlas site default. |
 
-**Returns:** `ResolveResult` (`page`, `template`, `entry?`, `seo?`).
+**Returns:** `ResolveResult` (`page`, `template`, `entry?`, `entries?`, `seo?`).
+
+- Collection **detail** routes set `entry`.
+- Collection **listing** routes (path without `:slug`) set `entries` to published entries for that page’s collection.
 
 **Common errors:** `RESOLVE_NOT_FOUND` (404), `ENVIRONMENT_NOT_FOUND`, `VALIDATION_FAILED` (missing path).
 
@@ -91,12 +94,34 @@ const home = await cms.resolve("/");
 // home.template.layoutPreset → e.g. "landing" or "content-page"
 ```
 
+Collection listing:
+
+```ts
+const blogs = await cms.resolve("/blogs");
+// blogs.entries → published blog entries (when page is a collection listing)
+```
+
 Collection detail (slug page):
 
 ```ts
 const post = await cms.resolve("/blog/hello-world");
 // post.entry is set; post.seo may mirror entry SEO
 ```
+
+## `listEntries(collectionId, options?)`
+
+**Atlas:** `GET /public/sites/:siteId/envs/:envId/collections/:collectionId/entries?locale=`
+
+```ts
+const entries = await cms.listEntries("col_…", {
+  locale: "en-mt",
+  next: { revalidate: 60, tags: ["cms"] },
+});
+```
+
+**Returns:** published `Entry[]` for the environment’s pinned version and locale.
+
+**Common errors:** `COLLECTION_NOT_FOUND` (404), `ENVIRONMENT_NOT_FOUND`, `RESOLVE_NOT_FOUND` (unknown locale).
 
 ## `getLiveItem(key, options?)`
 
