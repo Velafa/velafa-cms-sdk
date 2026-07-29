@@ -1,8 +1,8 @@
 # API reference
 
-TypeScript surfaces exported by `@velafa-cms/sdk` and `@velafa-cms/sdk/next`. Field shapes match Atlas camelCase API mappers.
+TypeScript surfaces exported by `@velafa/cms-sdk` and `@velafa/cms-sdk/next`. Field shapes match Atlas camelCase API mappers.
 
-## Package: `@velafa-cms/sdk`
+## Package: `@velafa/cms-sdk`
 
 ### Functions
 
@@ -301,7 +301,7 @@ Reserved live item keys when Spotify is linked on the site. Load with `getLiveIt
 
 ---
 
-## Package: `@velafa-cms/sdk/next`
+## Package: `@velafa/cms-sdk/next`
 
 Re-exports the core client symbols above, plus:
 

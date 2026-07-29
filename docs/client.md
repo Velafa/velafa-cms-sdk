@@ -1,11 +1,11 @@
 # Client API
 
-Framework-agnostic client exported from `@velafa-cms/sdk`.
+Framework-agnostic client exported from `@velafa/cms-sdk`.
 
 ## `createCmsClient(config)`
 
 ```ts
-import { createCmsClient } from "@velafa-cms/sdk";
+import { createCmsClient } from "@velafa/cms-sdk";
 
 const cms = createCmsClient({
   baseUrl: "https://atlas.example.com",
@@ -184,7 +184,7 @@ const text = await cms.getLlmsTxt();
 ## Error handling
 
 ```ts
-import { CmsApiError, isResolveNotFound } from "@velafa-cms/sdk";
+import { CmsApiError, isResolveNotFound } from "@velafa/cms-sdk";
 
 try {
   await cms.resolve("/missing");

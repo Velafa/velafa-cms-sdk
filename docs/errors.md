@@ -14,7 +14,7 @@ class CmsApiError extends Error {
 ```
 
 ```ts
-import { CmsApiError, isCmsApiError } from "@velafa-cms/sdk";
+import { CmsApiError, isCmsApiError } from "@velafa/cms-sdk";
 
 try {
   await cms.resolve("/missing");
@@ -53,12 +53,12 @@ SDK-generated codes (not from Atlas):
 | `NETWORK_ERROR` | `fetch` threw (DNS, abort, offline); `status` is `0` |
 | `VALIDATION_FAILED` | Missing client config or required env vars |
 
-Constants are exported as `ERROR_CODE` from `@velafa-cms/sdk`.
+Constants are exported as `ERROR_CODE` from `@velafa/cms-sdk`.
 
 ## Next.js `resolvePage` and `notFound()`
 
 ```ts
-import { resolvePage } from "@velafa-cms/sdk/next";
+import { resolvePage } from "@velafa/cms-sdk/next";
 
 const result = await resolvePage(cms, slug);
 ```

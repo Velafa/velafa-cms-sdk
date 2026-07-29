@@ -1,7 +1,7 @@
 {
-  "name": "@velafa-cms/sdk",
+  "name": "@velafa/cms-sdk",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "description": "Typed client and Next.js helpers for Velafa Atlas public CMS delivery APIs",
   "type": "module",
   "main": "./dist/index.js",
@@ -19,13 +19,21 @@
   "files": [
     "dist",
     "docs",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build",
     "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velafa/velafa-cms-sdk.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "peerDependencies": {
     "next": "^16.0.0"
@@ -44,5 +52,5 @@
   "engines": {
     "node": ">=18"
   },
-  "license": "UNLICENSED"
+  "license": "MIT"
 }

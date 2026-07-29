@@ -1,4 +1,4 @@
-# @velafa-cms/sdk
+# @velafa/cms-sdk
 
 Typed TypeScript client and Next.js App Router helpers for **Velafa Atlas public CMS delivery APIs**.
 
@@ -10,29 +10,35 @@ This SDK does **not** cover the admin CMS (auth, CRUD, publish UI). Those APIs s
 
 ## Install
 
-Install from the public GitHub repository (not published to the npm registry yet):
+Published to **GitHub Packages** as `@velafa/cms-sdk`.
 
-```bash
-npm install git+https://github.com/velafa/velafa-cms-sdk.git
+Add a project `.npmrc` so the `@velafa` scope resolves to GitHub Packages:
+
+```
+@velafa:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
 ```
 
-Pin a commit when you want reproducible installs (recommended for production / Vercel):
+Set `NODE_AUTH_TOKEN` to a GitHub personal access token with `read:packages` (required even for public packages). Then:
 
 ```bash
-npm install git+https://github.com/velafa/velafa-cms-sdk.git#21e999d9d5f7f54e09ff37d77a025744403798d4
+npm install @velafa/cms-sdk
 ```
 
-Local workspace sibling (development only):
+Peer dependency (optional): `next@^16` when using `@velafa/cms-sdk/next`.
+
+### Local development
 
 ```bash
 npm install file:../velafa-cms-sdk
 ```
 
-Use **HTTPS** (`git+https://…`), not SSH, so CI and Vercel can install without deploy keys.
+## Releases
 
-A `prepare` script runs `npm run build` on install so `dist/` is produced automatically.
-
-Peer dependency (optional): `next@^16` when using `@velafa-cms/sdk/next`.
+1. Bump `"version"` in `package.json` (semver)
+2. Commit and push to `main`
+3. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`
+4. The [publish workflow](./.github/workflows/publish.yml) publishes that version to GitHub Packages
 
 ## Environment variables
 
@@ -46,7 +52,7 @@ Peer dependency (optional): `next@^16` when using `@velafa-cms/sdk/next`.
 ## Quick start
 
 ```ts
-import { createCmsClientFromEnv } from "@velafa-cms/sdk/next";
+import { createCmsClientFromEnv } from "@velafa/cms-sdk/next";
 
 const cms = createCmsClientFromEnv();
 
@@ -54,7 +60,7 @@ const page = await cms.resolve("/blog/hello-world");
 console.log(page.template.layoutPreset, page.entry?.slug);
 ```
 
-Or configure explicitly with `createCmsClient` from `@velafa-cms/sdk` when you already have validated `baseUrl` / `siteId` / `envId` strings.
+Or configure explicitly with `createCmsClient` from `@velafa/cms-sdk` when you already have validated `baseUrl` / `siteId` / `envId` strings.
 
 Next.js App Router (Server Component):
 
@@ -63,7 +69,7 @@ import {
   createCmsClientFromEnv,
   resolvePage,
   buildMetadata,
-} from "@velafa-cms/sdk/next";
+} from "@velafa/cms-sdk/next";
 import type { Metadata } from "next";
 
 const cms = createCmsClientFromEnv();
@@ -102,9 +108,9 @@ export default async function Page(props: Props) {
 
 | Import | Use when |
 |--------|----------|
-| `@velafa-cms/sdk` | Framework-agnostic client |
-| `@velafa-cms/sdk/next` | Next.js 16 helpers (`notFound`, `Metadata`, route `Response`s) |
+| `@velafa/cms-sdk` | Framework-agnostic client |
+| `@velafa/cms-sdk/next` | Next.js 16 helpers (`notFound`, `Metadata`, route `Response`s) |
 
 ## License
 
-UNLICENSED — source is public on GitHub; not an open-source license grant. Not published to the npm registry.
+[MIT](./LICENSE)

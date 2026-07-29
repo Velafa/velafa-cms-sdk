@@ -1,6 +1,6 @@
 # Next.js App Router
 
-Helpers from `@velafa-cms/sdk/next` for Next.js **16** (peer `next@^16`).
+Helpers from `@velafa/cms-sdk/next` for Next.js **16** (peer `next@^16`).
 
 Import these only in **Server Components**, `generateMetadata`, and Route Handlers. Do not call the client from browser Client Components (Atlas public APIs are not CORS-enabled for that pattern).
 
@@ -14,14 +14,14 @@ VELAFA_DEFAULT_LOCALE=en-gb
 ```
 
 ```ts
-import { createCmsClientFromEnv } from "@velafa-cms/sdk/next";
+import { createCmsClientFromEnv } from "@velafa/cms-sdk/next";
 
 const cms = createCmsClientFromEnv();
 ```
 
 Throws `CmsApiError` (`VALIDATION_FAILED`) if a required env var is missing.
 
-You can also call `createCmsClient({ … })` from `@velafa-cms/sdk` if you prefer explicit config.
+You can also call `createCmsClient({ … })` from `@velafa/cms-sdk` if you prefer explicit config.
 
 ## Catch-all page
 
@@ -43,7 +43,7 @@ import {
   resolvePage,
   buildMetadata,
   LAYOUT_PRESET,
-} from "@velafa-cms/sdk/next";
+} from "@velafa/cms-sdk/next";
 import type { Metadata } from "next";
 
 const cms = createCmsClientFromEnv();
@@ -133,7 +133,7 @@ Use a route handler that proxies the XML:
 import {
   createCmsClientFromEnv,
   sitemapResponse,
-} from "@velafa-cms/sdk/next";
+} from "@velafa/cms-sdk/next";
 
 const cms = createCmsClientFromEnv();
 
@@ -155,7 +155,7 @@ Next has no special file convention for `llms.txt`. Use a route handler:
 import {
   createCmsClientFromEnv,
   llmsTxtResponse,
-} from "@velafa-cms/sdk/next";
+} from "@velafa/cms-sdk/next";
 
 const cms = createCmsClientFromEnv();
 
