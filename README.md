@@ -10,16 +10,7 @@ This SDK does **not** cover the admin CMS (auth, CRUD, publish UI). Those APIs s
 
 ## Install
 
-Published to **GitHub Packages** as `@velafa/cms-sdk`.
-
-Add a project `.npmrc` so the `@velafa` scope resolves to GitHub Packages:
-
-```
-@velafa:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
-```
-
-Set `NODE_AUTH_TOKEN` to a GitHub personal access token with `read:packages` (required even for public packages). Then:
+Published to the public **npm** registry as `@velafa/cms-sdk`. No auth token is required to install.
 
 ```bash
 npm install @velafa/cms-sdk
@@ -38,7 +29,7 @@ npm install file:../velafa-cms-sdk
 1. Bump `"version"` in `package.json` (semver)
 2. Commit and push to `main`
 3. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`
-4. The [publish workflow](./.github/workflows/publish.yml) publishes that version to GitHub Packages
+4. The [publish workflow](./.github/workflows/publish.yml) publishes that version to npmjs.com (requires repo secret `NPM_TOKEN`)
 
 ## Environment variables
 

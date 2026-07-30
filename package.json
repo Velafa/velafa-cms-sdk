@@ -33,7 +33,8 @@
     "url": "https://github.com/velafa/velafa-cms-sdk.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "peerDependencies": {
     "next": "^16.0.0"
