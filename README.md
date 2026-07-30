@@ -2,7 +2,7 @@
 
 Typed TypeScript client and Next.js App Router helpers for **Velafa Atlas public CMS delivery APIs**.
 
-Use this package from a Next.js (or any Node 18+) website to resolve published pages, load live items, and proxy published `sitemap.xml` / `llms.txt` artifacts.
+Use this package from a Next.js (or any Node 18+) website to resolve published pages, load live items, and proxy published `sitemap.xml` / `llms.txt` / `llms-full.txt` / `robots.txt` artifacts.
 
 This SDK does **not** cover the admin CMS (auth, CRUD, publish UI). Those APIs stay behind JWT + `tenantId` and are used by Velafa CMS itself.
 
