@@ -9,8 +9,10 @@ import { CmsApiError, throwClientError } from "./errors.js";
 import {
   buildCollectionEntriesUrl,
   buildLiveItemUrl,
+  buildLlmsFullTxtUrl,
   buildLlmsTxtUrl,
   buildResolveUrl,
+  buildRobotsTxtUrl,
   buildSitemapUrl,
 } from "./paths.js";
 import type {
@@ -39,6 +41,10 @@ export interface CmsClient {
   getSitemap(options?: CmsRequestOptions): Promise<string>;
   /** Published llms.txt artifact (plain text). */
   getLlmsTxt(options?: CmsRequestOptions): Promise<string>;
+  /** Published llms-full.txt artifact (plain text). */
+  getLlmsFullTxt(options?: CmsRequestOptions): Promise<string>;
+  /** Published robots.txt artifact (plain text). */
+  getRobotsTxt(options?: CmsRequestOptions): Promise<string>;
 }
 
 /**
@@ -96,6 +102,16 @@ export function createCmsClient(config: CmsClientConfig): CmsClient {
 
     async getLlmsTxt(options = {}) {
       const url = buildLlmsTxtUrl(baseUrl, config.siteId, config.envId);
+      return requestText(fetcher, url, CONTENT_TYPE.PLAIN, options);
+    },
+
+    async getLlmsFullTxt(options = {}) {
+      const url = buildLlmsFullTxtUrl(baseUrl, config.siteId, config.envId);
+      return requestText(fetcher, url, CONTENT_TYPE.PLAIN, options);
+    },
+
+    async getRobotsTxt(options = {}) {
+      const url = buildRobotsTxtUrl(baseUrl, config.siteId, config.envId);
       return requestText(fetcher, url, CONTENT_TYPE.PLAIN, options);
     },
   };

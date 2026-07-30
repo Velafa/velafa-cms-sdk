@@ -96,6 +96,38 @@ export function buildLlmsTxtUrl(
   ).toString();
 }
 
+export function buildLlmsFullTxtUrl(
+  baseUrl: string,
+  siteId: string,
+  envId: string,
+): string {
+  return new URL(
+    buildPublicSitePath(
+      siteId,
+      API_PATH_SEGMENT.ENVS,
+      encodeSegment(envId),
+      API_PATH_SEGMENT.LLMS_FULL_TXT,
+    ),
+    `${trimTrailingSlash(baseUrl)}/`,
+  ).toString();
+}
+
+export function buildRobotsTxtUrl(
+  baseUrl: string,
+  siteId: string,
+  envId: string,
+): string {
+  return new URL(
+    buildPublicSitePath(
+      siteId,
+      API_PATH_SEGMENT.ENVS,
+      encodeSegment(envId),
+      API_PATH_SEGMENT.ROBOTS_TXT,
+    ),
+    `${trimTrailingSlash(baseUrl)}/`,
+  ).toString();
+}
+
 export function buildCollectionEntriesUrl(
   baseUrl: string,
   siteId: string,

@@ -80,6 +80,8 @@ export const API_PATH_SEGMENT = {
   LIVE: "live",
   SITEMAP_XML: "sitemap.xml",
   LLMS_TXT: "llms.txt",
+  LLMS_FULL_TXT: "llms-full.txt",
+  ROBOTS_TXT: "robots.txt",
 } as const;
 
 export const API_QUERY_PARAM = {

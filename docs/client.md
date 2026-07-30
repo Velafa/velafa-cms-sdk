@@ -59,7 +59,7 @@ JSON endpoints (`resolve`, `getLiveItem`) return Atlas’s envelope:
 
 The client **unwraps `data`** and returns it. On `success: false` (or non-OK HTTP with an envelope), it throws `CmsApiError`.
 
-Artifact endpoints (`getSitemap`, `getLlmsTxt`) return **raw strings** (XML / plain text), not an envelope.
+Artifact endpoints (`getSitemap`, `getLlmsTxt`, `getLlmsFullTxt`, `getRobotsTxt`) return **raw strings** (XML / plain text), not an envelope.
 
 ## `resolve(path, options?)`
 
@@ -178,6 +178,30 @@ For Next.js, prefer [`sitemapResponse`](./nextjs.md) so you return a proper `Res
 ```ts
 const text = await cms.getLlmsTxt();
 ```
+
+**Common errors:** `ARTIFACT_NOT_FOUND` if never published.
+
+## `getLlmsFullTxt(options?)`
+
+**Atlas:** `GET /public/sites/:siteId/envs/:envId/llms-full.txt`
+
+```ts
+const text = await cms.getLlmsFullTxt();
+```
+
+Longer dump with titles, URLs, and SEO descriptions. Same include rules as `llms.txt`.
+
+**Common errors:** `ARTIFACT_NOT_FOUND` if never published.
+
+## `getRobotsTxt(options?)`
+
+**Atlas:** `GET /public/sites/:siteId/envs/:envId/robots.txt`
+
+```ts
+const text = await cms.getRobotsTxt();
+```
+
+Published `Allow: /` robots file pointing at the site sitemap. Prefer [`robotsTxtResponse`](./nextjs.md) in Next.js.
 
 **Common errors:** `ARTIFACT_NOT_FOUND` if never published.
 

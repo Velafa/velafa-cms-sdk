@@ -41,7 +41,7 @@ These codes appear on failed JSON envelopes (and are set on `CmsApiError.code` w
 |------|----------------|------|
 | `RESOLVE_NOT_FOUND` | 404 | No published page matches the path/locale |
 | `LIVE_ITEM_NOT_FOUND` | 404 | No live item for key/locale |
-| `ARTIFACT_NOT_FOUND` | 404 | Sitemap or llms.txt never published for the env |
+| `ARTIFACT_NOT_FOUND` | 404 | Sitemap, llms.txt, llms-full.txt, or robots.txt never published for the env |
 | `ENVIRONMENT_NOT_FOUND` | 404 | `envId` missing or not under `siteId` |
 | `VALIDATION_FAILED` | 400 | Missing/invalid input (e.g. resolve without `path`) |
 

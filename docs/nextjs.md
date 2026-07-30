@@ -166,6 +166,46 @@ export async function GET() {
 }
 ```
 
+## llms-full.txt
+
+Optional longer index for language models:
+
+```ts
+// app/llms-full.txt/route.ts
+import {
+  createCmsClientFromEnv,
+  llmsFullTxtResponse,
+} from "@velafa/cms-sdk/next";
+
+const cms = createCmsClientFromEnv();
+
+export async function GET() {
+  return llmsFullTxtResponse(cms, {
+    next: { revalidate: 3600, tags: ["cms-llms-full"] },
+  });
+}
+```
+
+## robots.txt
+
+Prefer a route handler that proxies the published artifact (instead of a static `robots.ts`) so the sitemap URL stays in sync with publish:
+
+```ts
+// app/robots.txt/route.ts
+import {
+  createCmsClientFromEnv,
+  robotsTxtResponse,
+} from "@velafa/cms-sdk/next";
+
+const cms = createCmsClientFromEnv();
+
+export async function GET() {
+  return robotsTxtResponse(cms, {
+    next: { revalidate: 3600, tags: ["cms-robots"] },
+  });
+}
+```
+
 ## Locales in the App Router
 
 Atlas accepts locale as a **query param** on resolve/live. The SDK does not parse locale from the URL path for you.

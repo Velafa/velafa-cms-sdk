@@ -4,6 +4,8 @@ export { resolvePage } from "./resolve_page.js";
 export { buildMetadata } from "./metadata.js";
 export { sitemapResponse } from "./sitemap.js";
 export { llmsTxtResponse } from "./llms.js";
+export { llmsFullTxtResponse } from "./llms_full.js";
+export { robotsTxtResponse } from "./robots.js";
 
 export {
   createCmsClient,

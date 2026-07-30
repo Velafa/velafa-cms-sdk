@@ -43,6 +43,8 @@ Do not call admin APIs from a public website. Prefer **server-side** fetches (RS
 
 - `GET .../sitemap.xml`
 - `GET .../llms.txt`
+- `GET .../llms-full.txt`
+- `GET .../robots.txt`
 
 If an environment has never been published, those artifact endpoints return `ARTIFACT_NOT_FOUND` (404). Resolve can still work for content that exists in the pinned published version independently of whether you care about sitemap/llms.
 

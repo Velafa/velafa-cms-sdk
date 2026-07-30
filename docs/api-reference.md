@@ -39,6 +39,8 @@ True for resolve / live / artifact not-found codes or HTTP 404.
 | `getLiveItem(key, options?: LocaleOptions)` | `Promise<LiveItem>` |
 | `getSitemap(options?: CmsRequestOptions)` | `Promise<string>` |
 | `getLlmsTxt(options?: CmsRequestOptions)` | `Promise<string>` |
+| `getLlmsFullTxt(options?: CmsRequestOptions)` | `Promise<string>` |
+| `getRobotsTxt(options?: CmsRequestOptions)` | `Promise<string>` |
 
 Readonly `config`: `{ baseUrl, siteId, envId, defaultLocale? }`.
 
@@ -326,3 +328,11 @@ Raw Atlas XML for `app/sitemap.xml/route.ts` only.
 ### `llmsTxtResponse(client, options?): Promise<Response>`
 
 Plain text for `app/llms.txt/route.ts`.
+
+### `llmsFullTxtResponse(client, options?): Promise<Response>`
+
+Plain text for `app/llms-full.txt/route.ts`.
+
+### `robotsTxtResponse(client, options?): Promise<Response>`
+
+Plain text for `app/robots.txt/route.ts`.
