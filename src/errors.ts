@@ -35,7 +35,7 @@ export function isNotFoundError(error: unknown): boolean {
   }
   return (
     error.code === ERROR_CODE.RESOLVE_NOT_FOUND ||
-    error.code === ERROR_CODE.LIVE_ITEM_NOT_FOUND ||
+    error.code === ERROR_CODE.DATA_FEED_NOT_FOUND ||
     error.code === ERROR_CODE.ARTIFACT_NOT_FOUND ||
     error.status === HTTP_STATUS.NOT_FOUND
   );

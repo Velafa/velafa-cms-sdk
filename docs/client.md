@@ -51,7 +51,7 @@ See [Caching](./caching.md).
 
 ## Envelope vs raw bodies
 
-JSON endpoints (`resolve`, `getLiveItem`) return Atlas’s envelope:
+JSON endpoints (`resolve`, `getDataFeed`) return Atlas’s envelope:
 
 ```json
 { "success": true, "message": "Route resolved.", "data": { … } }
@@ -123,34 +123,34 @@ const entries = await cms.listEntries("col_…", {
 
 **Common errors:** `COLLECTION_NOT_FOUND` (404), `ENVIRONMENT_NOT_FOUND`, `RESOLVE_NOT_FOUND` (unknown locale).
 
-## `getLiveItem(key, options?)`
+## `getDataFeed(key, options?)`
 
-**Atlas:** `GET /public/sites/:siteId/live/:key?locale=`
+**Atlas:** `GET /public/sites/:siteId/data-feeds/:key?locale=`
 
 ```ts
-const nav = await cms.getLiveItem("header-nav", { locale: "en-gb" });
+const nav = await cms.getDataFeed("header-nav", { locale: "en-gb" });
 // nav.data → Record<string, unknown>
 ```
 
-**Returns:** `LiveItem`.
+**Returns:** `DataFeed`.
 
-**Common errors:** `LIVE_ITEM_NOT_FOUND` (404).
+**Common errors:** `DATA_FEED_NOT_FOUND` (404).
 
-Note: live items are **not** scoped to `envId` in the URL (site + key + locale only).
+Note: data feeds are **not** scoped to `envId` in the URL (site + key + locale only).
 
-## Spotify (reserved live keys)
+## Spotify (reserved data feed keys)
 
-When Spotify is connected and linked on a site, Atlas serves reserved live keys via `getLiveItem`. No separate Spotify client methods.
+When Spotify is connected and linked on a site, Atlas serves reserved keys via `getDataFeed`. No separate Spotify client methods.
 
 ```ts
 import { SPOTIFY_LIVE_KEY } from "@velafa/cms-sdk";
 
-const now = await cms.getLiveItem(SPOTIFY_LIVE_KEY.CURRENTLY_PLAYING, {
+const now = await cms.getDataFeed(SPOTIFY_LIVE_KEY.CURRENTLY_PLAYING, {
   next: { revalidate: 15 },
 });
 // now.data → { isPlaying, progressMs?, track? }
 
-const tops = await cms.getLiveItem(SPOTIFY_LIVE_KEY.TOP_TRACKS_THIS_YEAR);
+const tops = await cms.getDataFeed(SPOTIFY_LIVE_KEY.TOP_TRACKS_THIS_YEAR);
 // tops.data → { range, spotifyTimeRange, items }
 ```
 

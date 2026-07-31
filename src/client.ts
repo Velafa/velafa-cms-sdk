@@ -8,7 +8,7 @@ import { parseEnvelope, unwrapEnvelope } from "./envelope.js";
 import { CmsApiError, throwClientError } from "./errors.js";
 import {
   buildCollectionEntriesUrl,
-  buildLiveItemUrl,
+  buildDataFeedUrl,
   buildLlmsFullTxtUrl,
   buildLlmsTxtUrl,
   buildResolveUrl,
@@ -18,8 +18,8 @@ import {
 import type {
   CmsClientConfig,
   CmsRequestOptions,
+  DataFeed,
   Entry,
-  LiveItem,
   LocaleOptions,
   ResolveResult,
 } from "./types/index.js";
@@ -36,7 +36,7 @@ export interface CmsClient {
     collectionId: string,
     options?: LocaleOptions,
   ): Promise<Entry[]>;
-  getLiveItem(key: string, options?: LocaleOptions): Promise<LiveItem>;
+  getDataFeed(key: string, options?: LocaleOptions): Promise<DataFeed>;
   /** Published sitemap.xml artifact (raw XML). */
   getSitemap(options?: CmsRequestOptions): Promise<string>;
   /** Published llms.txt artifact (plain text). */
@@ -89,10 +89,10 @@ export function createCmsClient(config: CmsClientConfig): CmsClient {
       return requestJson<Entry[]>(fetcher, url, options);
     },
 
-    async getLiveItem(key, options = {}) {
+    async getDataFeed(key, options = {}) {
       const locale = resolveLocale(options.locale, config.defaultLocale);
-      const url = buildLiveItemUrl(baseUrl, config.siteId, key, locale);
-      return requestJson<LiveItem>(fetcher, url, options);
+      const url = buildDataFeedUrl(baseUrl, config.siteId, key, locale);
+      return requestJson<DataFeed>(fetcher, url, options);
     },
 
     async getSitemap(options = {}) {

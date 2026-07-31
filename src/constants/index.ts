@@ -28,7 +28,7 @@ export const PAGE_TYPE = {
 
 export const ERROR_CODE = {
   RESOLVE_NOT_FOUND: "RESOLVE_NOT_FOUND",
-  LIVE_ITEM_NOT_FOUND: "LIVE_ITEM_NOT_FOUND",
+  DATA_FEED_NOT_FOUND: "DATA_FEED_NOT_FOUND",
   ARTIFACT_NOT_FOUND: "ARTIFACT_NOT_FOUND",
   ENVIRONMENT_NOT_FOUND: "ENVIRONMENT_NOT_FOUND",
   VALIDATION_FAILED: "VALIDATION_FAILED",
@@ -77,7 +77,7 @@ export const API_PATH_SEGMENT = {
   RESOLVE: "resolve",
   COLLECTIONS: "collections",
   ENTRIES: "entries",
-  LIVE: "live",
+  DATA_FEEDS: "data-feeds",
   SITEMAP_XML: "sitemap.xml",
   LLMS_TXT: "llms.txt",
   LLMS_FULL_TXT: "llms-full.txt",

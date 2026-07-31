@@ -33,7 +33,7 @@ export type {
   ListSection,
   ListSectionData,
   ListSectionItem,
-  LiveItem,
+  DataFeed,
   LlmsTxtRule,
   LocaleOptions,
   Page,

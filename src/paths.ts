@@ -44,7 +44,7 @@ export function buildResolveUrl(
   return url.toString();
 }
 
-export function buildLiveItemUrl(
+export function buildDataFeedUrl(
   baseUrl: string,
   siteId: string,
   key: string,
@@ -53,7 +53,7 @@ export function buildLiveItemUrl(
   const url = new URL(
     buildPublicSitePath(
       siteId,
-      API_PATH_SEGMENT.LIVE,
+      API_PATH_SEGMENT.DATA_FEEDS,
       encodeSegment(key),
     ),
     `${trimTrailingSlash(baseUrl)}/`,

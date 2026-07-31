@@ -18,7 +18,7 @@ True when `code === "RESOLVE_NOT_FOUND"`.
 
 #### `isNotFoundError(error: unknown): boolean`
 
-True for resolve / live / artifact not-found codes or HTTP 404.
+True for resolve / data-feed / artifact not-found codes or HTTP 404.
 
 ### Classes
 
@@ -36,7 +36,7 @@ True for resolve / live / artifact not-found codes or HTTP 404.
 |--------|---------|
 | `resolve(path, options?: LocaleOptions)` | `Promise<ResolveResult>` |
 | `listEntries(collectionId, options?: LocaleOptions)` | `Promise<Entry[]>` |
-| `getLiveItem(key, options?: LocaleOptions)` | `Promise<LiveItem>` |
+| `getDataFeed(key, options?: LocaleOptions)` | `Promise<DataFeed>` |
 | `getSitemap(options?: CmsRequestOptions)` | `Promise<string>` |
 | `getLlmsTxt(options?: CmsRequestOptions)` | `Promise<string>` |
 | `getLlmsFullTxt(options?: CmsRequestOptions)` | `Promise<string>` |
@@ -140,12 +140,13 @@ type LocaleOptions = CmsRequestOptions & {
 | `createdAt` | `string` |
 | `updatedAt` | `string` |
 
-#### `LiveItem`
+#### `DataFeed`
 
 | Field | Type |
 |-------|------|
 | `id` | `string` |
 | `siteId` | `string` |
+| `versionId` | `string` |
 | `key` | `string` |
 | `locale` | `string \| undefined` |
 | `data` | `Record<string, unknown>` |
@@ -246,7 +247,7 @@ type ApiEnvelope<T> = {
 
 #### `SPOTIFY_LIVE_KEY`
 
-Reserved live item keys when Spotify is linked on the site. Load with `getLiveItem`.
+Reserved data feed keys when Spotify is linked on the site. Load with `getDataFeed`.
 
 | Key | Value |
 |-----|-------|
@@ -272,7 +273,7 @@ Reserved live item keys when Spotify is linked on the site. Load with `getLiveIt
 | Key | Value |
 |-----|-------|
 | `RESOLVE_NOT_FOUND` | `"RESOLVE_NOT_FOUND"` |
-| `LIVE_ITEM_NOT_FOUND` | `"LIVE_ITEM_NOT_FOUND"` |
+| `DATA_FEED_NOT_FOUND` | `"DATA_FEED_NOT_FOUND"` |
 | `ARTIFACT_NOT_FOUND` | `"ARTIFACT_NOT_FOUND"` |
 | `ENVIRONMENT_NOT_FOUND` | `"ENVIRONMENT_NOT_FOUND"` |
 | `VALIDATION_FAILED` | `"VALIDATION_FAILED"` |

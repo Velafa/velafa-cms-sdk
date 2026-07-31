@@ -28,7 +28,7 @@ export type {
   ContentSection,
   Entry,
   LayoutPreset,
-  LiveItem,
+  DataFeed,
   LlmsTxtRule,
   LocaleOptions,
   Page,

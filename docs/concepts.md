@@ -9,7 +9,7 @@ Tenant
   └── Site (site_…)
         ├── Environments (env_…)  ← each pins a content version
         ├── Locales
-        ├── Live items (not versioned)
+        ├── Data feeds (public delivery is site-scoped by key/locale)
         └── Versioned content (templates, collections, entries, pages)
 ```
 
@@ -66,32 +66,32 @@ Drive your UI from:
 - `page.type` — `static` | `collection` | `dynamic`
 - `page.sections` / `entry.fields` / `entry.body` / `entry.sections` / `entries` — content payload (`ContentSection` is open `{ type, data }`; `SECTION_TYPE` presets are optional conventions)
 
-## Live items
+## Data feeds
 
-Live items are **site-scoped**, not version-pinned. Typical uses: header nav, footer, site-wide banners.
+Data feeds are **site-scoped** for public delivery (not env-pinned in the URL). Typical uses: header nav, footer, site-wide banners.
 
 ```ts
-await cms.getLiveItem("header-nav", { locale: "en-gb" });
+await cms.getDataFeed("header-nav", { locale: "en-gb" });
 ```
 
-Lookup is exact on `(siteId, key, locale?)`. There is no documented automatic fallback to the default locale in the public live endpoint.
+Lookup is exact on `(siteId, key, locale?)`. There is no documented automatic fallback to the default locale in the public data feed endpoint.
 
 ## Spotify (site-linked)
 
-When Spotify is connected on an Atlas user account and linked on a site, reserved live keys serve listening data through the normal live item API:
+When Spotify is connected on an Atlas user account and linked on a site, reserved keys serve listening data through the normal data feed API:
 
 ```ts
 import { SPOTIFY_LIVE_KEY } from "@velafa/cms-sdk";
 
-await cms.getLiveItem(SPOTIFY_LIVE_KEY.CURRENTLY_PLAYING);
-await cms.getLiveItem(SPOTIFY_LIVE_KEY.TOP_TRACKS_THIS_YEAR);
+await cms.getDataFeed(SPOTIFY_LIVE_KEY.CURRENTLY_PLAYING);
+await cms.getDataFeed(SPOTIFY_LIVE_KEY.TOP_TRACKS_THIS_YEAR);
 ```
 
 `this_year` maps to Spotify’s `medium_term` affinity (~last 6 months), not a calendar year.
 
 ## Media
 
-There is **no** public media list/get API. Media URLs (CloudFront / CDN) are embedded inside page sections, entry fields, and live item `data`. Render those URLs as-is.
+There is **no** public media list/get API. Media URLs (CloudFront / CDN) are embedded inside page sections, entry fields, and data feed `data`. Render those URLs as-is.
 
 ## Layout presets
 

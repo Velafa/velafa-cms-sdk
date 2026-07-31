@@ -26,9 +26,9 @@ await cms.resolve("/about"); // defaultLocale or Atlas default
 
 There is **no** public “list locales” endpoint. Configure supported locales in your website (constants, routing config, or CMS-exported config you maintain yourself).
 
-## Live items
+## Data feeds
 
-`getLiveItem` matches **exactly** on key + optional locale. The public live endpoint does not document an automatic fallback to the default locale when a localized item is missing. If you store locale-specific live items, pass the locale you need; if you store a single non-localized item, omit locale consistently on write and read.
+`getDataFeed` matches **exactly** on key + optional locale. The public data feed endpoint does not document an automatic fallback to the default locale when a localized feed is missing. If you store locale-specific data feeds, pass the locale you need; if you store a single non-localized feed, omit locale consistently on write and read.
 
 ## URL strategies in Next.js
 

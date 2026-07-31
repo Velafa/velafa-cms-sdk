@@ -109,9 +109,10 @@ export interface ResolveResult {
   seo?: SeoFields;
 }
 
-export interface LiveItem {
+export interface DataFeed {
   id: string;
   siteId: string;
+  versionId: string;
   key: string;
   locale?: string;
   data: Record<string, unknown>;

@@ -31,7 +31,7 @@ try {
 |--------|---------|
 | `isCmsApiError(error)` | `error instanceof CmsApiError` |
 | `isResolveNotFound(error)` | `code === "RESOLVE_NOT_FOUND"` |
-| `isNotFoundError(error)` | Resolve / live / artifact not-found codes, or HTTP 404 |
+| `isNotFoundError(error)` | Resolve / data-feed / artifact not-found codes, or HTTP 404 |
 
 ## Atlas error codes
 
@@ -40,7 +40,7 @@ These codes appear on failed JSON envelopes (and are set on `CmsApiError.code` w
 | Code | Typical status | When |
 |------|----------------|------|
 | `RESOLVE_NOT_FOUND` | 404 | No published page matches the path/locale |
-| `LIVE_ITEM_NOT_FOUND` | 404 | No live item for key/locale |
+| `DATA_FEED_NOT_FOUND` | 404 | No data feed for key/locale |
 | `ARTIFACT_NOT_FOUND` | 404 | Sitemap, llms.txt, llms-full.txt, or robots.txt never published for the env |
 | `ENVIRONMENT_NOT_FOUND` | 404 | `envId` missing or not under `siteId` |
 | `VALIDATION_FAILED` | 400 | Missing/invalid input (e.g. resolve without `path`) |

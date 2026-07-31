@@ -208,7 +208,7 @@ export async function GET() {
 
 ## Locales in the App Router
 
-Atlas accepts locale as a **query param** on resolve/live. The SDK does not parse locale from the URL path for you.
+Atlas accepts locale as a **query param** on resolve/data-feeds. The SDK does not parse locale from the URL path for you.
 
 Common site strategies:
 
