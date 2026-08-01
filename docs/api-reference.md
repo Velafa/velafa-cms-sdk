@@ -37,6 +37,7 @@ True for resolve / data-feed / artifact not-found codes or HTTP 404.
 | `resolve(path, options?: LocaleOptions)` | `Promise<ResolveResult>` |
 | `listEntries(collectionId, options?: LocaleOptions)` | `Promise<Entry[]>` |
 | `getDataFeed(key, options?: LocaleOptions)` | `Promise<DataFeed>` |
+| `getSiteSettings(options?: CmsRequestOptions)` | `Promise<PublicSiteSettings>` |
 | `getSitemap(options?: CmsRequestOptions)` | `Promise<string>` |
 | `getLlmsTxt(options?: CmsRequestOptions)` | `Promise<string>` |
 | `getLlmsFullTxt(options?: CmsRequestOptions)` | `Promise<string>` |
@@ -164,6 +165,23 @@ type LocaleOptions = CmsRequestOptions & {
 | `noindex` | `boolean \| undefined` |
 | `ogImage` | `string \| undefined` |
 | `ogImageAlt` | `string \| undefined` |
+
+On `ResolveResult.seo`, `ogImage` / `ogImageAlt` are merged by Atlas: page → entry → site default OG (env pinned version).
+
+#### `PublicSiteSettings`
+
+| Field | Type |
+|-------|------|
+| `favicons` | `PublicSiteFavicon[]` |
+| `defaultOgImageUrl` | `string \| undefined` |
+| `defaultOgImageAlt` | `string \| undefined` |
+
+#### `PublicSiteFavicon`
+
+| Field | Type |
+|-------|------|
+| `format` | `string` |
+| `url` | `string` |
 
 #### `ContentSection`
 

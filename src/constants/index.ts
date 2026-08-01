@@ -82,6 +82,7 @@ export const API_PATH_SEGMENT = {
   LLMS_TXT: "llms.txt",
   LLMS_FULL_TXT: "llms-full.txt",
   ROBOTS_TXT: "robots.txt",
+  SETTINGS: "settings",
 } as const;
 
 export const API_QUERY_PARAM = {

@@ -13,6 +13,7 @@ import {
   buildLlmsTxtUrl,
   buildResolveUrl,
   buildRobotsTxtUrl,
+  buildSiteSettingsUrl,
   buildSitemapUrl,
 } from "./paths.js";
 import type {
@@ -21,6 +22,7 @@ import type {
   DataFeed,
   Entry,
   LocaleOptions,
+  PublicSiteSettings,
   ResolveResult,
 } from "./types/index.js";
 
@@ -37,6 +39,10 @@ export interface CmsClient {
     options?: LocaleOptions,
   ): Promise<Entry[]>;
   getDataFeed(key: string, options?: LocaleOptions): Promise<DataFeed>;
+  /**
+   * Env-pinned favicons and default Open Graph image for the configured `envId`.
+   */
+  getSiteSettings(options?: CmsRequestOptions): Promise<PublicSiteSettings>;
   /** Published sitemap.xml artifact (raw XML). */
   getSitemap(options?: CmsRequestOptions): Promise<string>;
   /** Published llms.txt artifact (plain text). */
@@ -93,6 +99,11 @@ export function createCmsClient(config: CmsClientConfig): CmsClient {
       const locale = resolveLocale(options.locale, config.defaultLocale);
       const url = buildDataFeedUrl(baseUrl, config.siteId, key, locale);
       return requestJson<DataFeed>(fetcher, url, options);
+    },
+
+    async getSiteSettings(options = {}) {
+      const url = buildSiteSettingsUrl(baseUrl, config.siteId, config.envId);
+      return requestJson<PublicSiteSettings>(fetcher, url, options);
     },
 
     async getSitemap(options = {}) {

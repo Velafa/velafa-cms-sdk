@@ -128,6 +128,22 @@ export function buildRobotsTxtUrl(
   ).toString();
 }
 
+export function buildSiteSettingsUrl(
+  baseUrl: string,
+  siteId: string,
+  envId: string,
+): string {
+  return new URL(
+    buildPublicSitePath(
+      siteId,
+      API_PATH_SEGMENT.ENVS,
+      encodeSegment(envId),
+      API_PATH_SEGMENT.SETTINGS,
+    ),
+    `${trimTrailingSlash(baseUrl)}/`,
+  ).toString();
+}
+
 export function buildCollectionEntriesUrl(
   baseUrl: string,
   siteId: string,

@@ -106,7 +106,26 @@ export interface ResolveResult {
   entry?: Entry;
   /** Present on collection listing resolves (path without `:slug`). */
   entries?: Entry[];
+  /**
+   * SEO for this resolve. `ogImage` / `ogImageAlt` are already merged by Atlas:
+   * page SEO → entry SEO → site default OG for the env’s pinned version.
+   */
   seo?: SeoFields;
+}
+
+export interface PublicSiteFavicon {
+  format: string;
+  url: string;
+}
+
+/**
+ * Env-pinned public site settings (favicons + default Open Graph).
+ * From `GET /public/sites/:siteId/envs/:envId/settings`.
+ */
+export interface PublicSiteSettings {
+  favicons: PublicSiteFavicon[];
+  defaultOgImageUrl?: string;
+  defaultOgImageAlt?: string;
 }
 
 export interface DataFeed {

@@ -107,8 +107,11 @@ cmsPathFromSegments("about");          // "/about"
 - `alternates.canonical` when `canonical` is set
 - `robots: { index: false, follow: false }` when `noindex` is true
 - `openGraph` / `twitter` when title, description, or `ogImage` is present
-  - `openGraph.images` / `twitter.images` use absolute `seo.ogImage` URLs (Atlas merges page → entry → site default)
+  - `openGraph.images` / `twitter.images` use absolute `seo.ogImage` URLs
+  - Atlas already merges **page → entry → site default OG** (env pinned version) into `result.seo.ogImage` / `ogImageAlt` — do not re-fetch the site default for page metadata
   - `twitter.card` is `summary_large_image` when an image is set
+
+For site chrome (favicons / default OG without resolving a path), use `cms.getSiteSettings()` (`GET .../envs/:envId/settings`).
 
 You can still merge with your own fields:
 

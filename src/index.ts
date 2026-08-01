@@ -47,5 +47,7 @@ export type {
   SectionPresetType,
   SeoFields,
   SitemapRule,
+  PublicSiteFavicon,
+  PublicSiteSettings,
   Template,
 } from "./types/index.js";

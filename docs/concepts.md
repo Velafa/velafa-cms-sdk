@@ -56,7 +56,7 @@ type ResolveResult = {
   template: Template; // layoutPreset, routePattern, kind, …
   entry?: Entry;      // present for collection detail routes
   entries?: Entry[];  // present for collection listing routes
-  seo?: SeoFields;    // usually from the entry when present
+  seo?: SeoFields;    // page → entry → site default OG already merged
 };
 ```
 
@@ -65,6 +65,16 @@ Drive your UI from:
 - `template.layoutPreset` — which layout/component set to render
 - `page.type` — `static` | `collection` | `dynamic`
 - `page.sections` / `entry.fields` / `entry.body` / `entry.sections` / `entries` — content payload (`ContentSection` is open `{ type, data }`; `SECTION_TYPE` presets are optional conventions)
+- `seo.ogImage` — Open Graph for this path (falls back to site default when page/entry omit it)
+
+## Site settings (env-pinned)
+
+```ts
+await cms.getSiteSettings();
+// favicons[], defaultOgImageUrl?, defaultOgImageAlt?
+```
+
+Same pinned version as resolve. Use for favicons and the site default OG without resolving a page.
 
 ## Data feeds
 

@@ -82,6 +82,7 @@ const article = await cms.resolve("/blog/hello-world", {
 
 - Collection **detail** routes set `entry`.
 - Collection **listing** routes (path without `:slug`) set `entries` to published entries for that page’s collection.
+- `seo.ogImage` / `seo.ogImageAlt` are **already merged** by Atlas: page SEO → entry SEO → site default OG for the env’s pinned version.
 
 **Common errors:** `RESOLVE_NOT_FOUND` (404), `ENVIRONMENT_NOT_FOUND`, `VALIDATION_FAILED` (missing path).
 
@@ -92,6 +93,7 @@ Homepage:
 ```ts
 const home = await cms.resolve("/");
 // home.template.layoutPreset → e.g. "landing" or "content-page"
+// home.seo?.ogImage → page OG or site default when unset
 ```
 
 Collection listing:
@@ -105,7 +107,7 @@ Collection detail (slug page):
 
 ```ts
 const post = await cms.resolve("/blog/hello-world");
-// post.entry is set; post.seo may mirror entry SEO
+// post.entry is set; post.seo.ogImage is page/entry SEO or site default
 ```
 
 ## `listEntries(collectionId, options?)`
@@ -137,6 +139,24 @@ const nav = await cms.getDataFeed("header-nav", { locale: "en-gb" });
 **Common errors:** `DATA_FEED_NOT_FOUND` (404).
 
 Note: data feeds are **not** scoped to `envId` in the URL (site + key + locale only).
+
+## `getSiteSettings(options?)`
+
+**Atlas:** `GET /public/sites/:siteId/envs/:envId/settings`
+
+```ts
+const settings = await cms.getSiteSettings({
+  next: { revalidate: 60, tags: ["cms"] },
+});
+// settings.favicons → [{ format, url }, …]
+// settings.defaultOgImageUrl / defaultOgImageAlt → site default OG for the pinned version
+```
+
+**Returns:** `PublicSiteSettings` for the configured environment’s pinned version (favicons with CDN URLs; optional default OG). Empty `favicons` when none are configured.
+
+**Common errors:** `ENVIRONMENT_NOT_FOUND`.
+
+Use this for layout chrome (icons / default OG). Per-page OG still comes from `resolve().seo` (already merged with this default).
 
 ## Spotify (reserved data feed keys)
 
